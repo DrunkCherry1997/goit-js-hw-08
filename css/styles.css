@@ -1,0 +1,46 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.gallery {
+    width: 620px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery-item {
+    width: 200px;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+    transform: scale(1.04);
+}
+
+.gallery-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+}
+
+.largeImage {
+    border: 5px solid black;
+}
+
+.modal {
+    display: none;
+}
