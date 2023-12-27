@@ -63,7 +63,8 @@ const images = [
       description: "Lighthouse Coast Sea",
     },
 ];
-  
+ 
+
 const galleryContainer = document.querySelector('.gallery');
 
 const galleryMarkup = images
@@ -80,6 +81,8 @@ const galleryMarkup = images
 galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 galleryContainer.addEventListener('click', handleGalleryClick);
 
+let activeLightboxInstance = null;
+
 function handleGalleryClick(event) {
   event.preventDefault();
   if (event.target.nodeName !== 'IMG') {
@@ -88,20 +91,36 @@ function handleGalleryClick(event) {
 
   const largeImageURL = event.target.dataset.source;
 
-  const instance = basicLightbox.create(`
+
+  activeLightboxInstance = basicLightbox.create(`
     <img src='${largeImageURL}' class='largeImage' width='800' height='600'>
   `);
     
-  instance.show();
+  activeLightboxInstance.show();
 }
 
-document.addEventListener('keydown', (event) => {
-  const instance = basicLightbox.getInstance();
 
-  if (event.key === 'Escape' && instance.visible()) {
-    instance.close();
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && activeLightboxInstance && activeLightboxInstance.visible()) {
+    // Закриваємо модальне вікно
+    activeLightboxInstance.close();
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
