@@ -65,6 +65,7 @@ const images = [
 ];
  
 
+
 const galleryContainer = document.querySelector('.gallery');
 
 const galleryMarkup = images
@@ -91,21 +92,34 @@ function handleGalleryClick(event) {
 
   const largeImageURL = event.target.dataset.source;
 
-
   activeLightboxInstance = basicLightbox.create(`
     <img src='${largeImageURL}' class='largeImage' width='800' height='600'>
-  `);
-    
+  `, {
+    onShow: (instance) => {
+   
+      document.addEventListener('keydown', handleEscapePress);
+    },
+    onClose: (instance) => {
+  
+      document.removeEventListener('keydown', handleEscapePress);
+    }
+  });
+
   activeLightboxInstance.show();
 }
 
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && activeLightboxInstance && activeLightboxInstance.visible()) {
-    // Закриваємо модальне вікно
+function handleEscapePress(event) {
+  if (event.key === 'Escape') {
     activeLightboxInstance.close();
   }
-});
+}
+
+
+
+
+
+
+
 
 
 
